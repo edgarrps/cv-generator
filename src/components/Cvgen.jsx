@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import jsPDF from 'jspdf'
 
-export const Cvgen = (props) => {
+export const Cvgen = () => {
     const [field, setField] = useState('')
 
     const handleChange = e => setField(e.target.value)
@@ -15,14 +15,13 @@ export const Cvgen = (props) => {
         putOnlyUsedFonts: true
     })
     const CvGenerator = () => {
-        doc.text(50, 50, handleChange + ' ')
+        doc.text(50, 50, field)
         doc.setFont('courier', 'bold')
-        doc.text(50, 150, 'This is the initial commit')
         doc.save('cv.pdf')
     }
     return (
         <div><form onSubmit={handleSubmit}>
-            <input type='text' value ={field} onChange={handleChange} placeholder='Insira seu texto'></input>
+            <input type='text' onChange={handleChange} placeholder='Insira seu texto'></input>
             <button onClick={CvGenerator}>Gerar CV</button>
         </form></div>
 
