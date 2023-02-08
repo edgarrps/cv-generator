@@ -34,9 +34,12 @@ export const Cvgen = () => {
         putOnlyUsedFonts: true
     })
     const CvGenerator = () => {
+        doc.addFont('Mulish', 'Mulish', 'bold')
+        doc.setFont('Mulish', 'bold')
+        doc.setFontSize(50)
         doc.text(50, 50, `${name} ${lastName}`)
+        doc.setFontSize(20)
         doc.text(50, 57, `${age} anos`)
-        doc.setFont('courier', 'bold')
 
         doc.save('cv.pdf')
     }
