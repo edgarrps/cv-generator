@@ -1,10 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Cvgen } from './components/Cvgen.jsx'
+import { BrowserRouter } from 'react-router-dom'
+import Routes from './Routes'
 import './App.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Cvgen />
-  </React.StrictMode>,
+    <BrowserRouter>
+    <Routes />
+    </BrowserRouter> 
+  </React.StrictMode>
 )
