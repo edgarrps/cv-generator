@@ -16,6 +16,8 @@ export const Fields = () => {
     const [tel, setTel] = useState('')
     const [email, setEmail] = useState('')
     const [linkedin, setLinkedin] = useState('')
+    const [description, setDescription] = useState('')
+
 
     const handleChangeName = e => setName(e.target.value)
     const handleChangeLastName = e => setLastName(e.target.value)
@@ -29,6 +31,7 @@ export const Fields = () => {
     const handleChangeTel = e => setTel(e.target.value)
     const handleChangeEmail = e => setEmail(e.target.value)
     const handleChangeLinkedin = e => setLinkedin(e.target.value)
+    const handleChangeDescription = e => setDescription(e.target.value)
 
     const handleSubmit = e => e.preventDefault()
 
