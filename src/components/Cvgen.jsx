@@ -15,7 +15,7 @@ export function Cvgen () {
         doc.setFontSize(10)
         
         //full address
-        doc.text(8, 40, `Endereço: ${address}. ${district}. ${city}. ${state}.`)
+        doc.text(8, 40, `Endereço: ${address}. ${district}. ${city}. ${stt}.`)
 
         doc.text(8, 45, `Telefone: ${tel}`)
         doc.text(8, 50, `Email: ${email}`)
