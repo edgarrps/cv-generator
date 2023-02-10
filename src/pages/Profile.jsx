@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import { useState } from 'react'
 import { Cvgen } from "../components/Cvgen"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 export default function Profile() {
 
@@ -20,7 +22,10 @@ export default function Profile() {
     
     const handleSubmit = e => e.preventDefault()
 
-    return (<div className='p-5 max-w-fit mx-auto px-10 bg-white rounded-3xl shadow-xl flex items-center space-x-4'>
+    return (
+    
+    <div className='p-5 max-w-fit mx-auto px-10 rounded-3xl shadow-xl flex items-center space-x-4'>
+        
         <form onSubmit={handleSubmit}>
         <div>
             <h1 className='font-bold p-4 text-4xl text-gray-900'>Dados pessoais</h1>
@@ -78,9 +83,27 @@ export default function Profile() {
                 <label htmlFor='profile' className='block mb-2 text-sm font-medium text-gray-900'>Objetivos</label>
                 <textarea id='profile' onChange={e => setDescription(e.target.value)} value={description} className='resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='Descrição de perfil' />
             </div>
+            <div className='mb-6'>
+            <hr className="mb-2"></hr>
+            <div className='space-y-4'>
+            <label htmlFor='professional-xp' className='font-bold p-4 text-4xl text-gray-900'>Formação acadêmica</label>
+                <label htmlFor='profile' className='block mb-2 text-sm font-medium text-gray-900'>Descrição</label>
+
+                <textarea id='profile' onChange={e => setDescription(e.target.value)} value={description} className='resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='Formação' />
+            </div>
+            </div>
+            <div className='mb-6'>
+            <hr className="mb-2"></hr>
+            <div className='space-y-4'>
+            <label htmlFor='professional-xp' className='font-bold p-4 text-4xl text-gray-900'>Experiência profissional</label>
+                <label htmlFor='profile' className='block mb-2 text-sm font-medium text-gray-900'>Descrição</label>
+
+                <textarea id='profile' onChange={e => setDescription(e.target.value)} value={description} className='resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='Descrição do trabalho' />
+            </div>
+            </div>
         </div>
             <div className='p-2 grid gap-6 md:grid-cols-2'>
-                <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'><Link to='/'>Voltar</Link></button>
+                <button className='text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'><Link to='../'>Voltar</Link></button>
                 <Cvgen name={name} lastName={lastName} maritalStatus={maritalStatus} age={age} address={address}
                     district={district} city={city} stt={stt} zipCode={zipCode} tel={tel} linkedin={linkedin} email={email}
                     description={description} />
