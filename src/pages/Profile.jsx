@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom"
-import { useState } from 'react'
+import {  Link } from "react-router-dom"
+import { useState } from "react"
 import { Cvgen } from "../components/Cvgen"
+import { IMaskInput } from "react-imask"
 
 export default function Profile() {
     const [checkedGA, setCheckedGA] = useState(false)
@@ -38,8 +39,10 @@ export default function Profile() {
     const [officeB, setOfficeB] = useState('')
     const [skillsXPA, setSkillsXPA] = useState('')
     const [skillsXPB, setSkillsXPB] = useState('')
+    const [image, setImage] = useState('')
 
     const handleSubmit = e => e.preventDefault()
+
 
     return (
 
@@ -79,28 +82,57 @@ export default function Profile() {
                         </div>
                         <div>
                             <label htmlFor='state' className='block mb-2 text-sm font-medium text-gray-900'>Estado</label>
-                            <input onChange={e => setStt(e.target.value)} value={stt} type='text' id='state' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='Rio de Janeiro' required />
+                            <select onChange={e => setStt(e.target.value)} value={stt} id='state' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='Selecione' required>
+                                <option></option>
+                                <option>AC</option>
+                                <option>AL</option>
+                                <option>AP</option>
+                                <option>AM</option>
+                                <option>BA</option>
+                                <option>CE</option>
+                                <option>DF</option>
+                                <option>ES</option>
+                                <option>GO</option>
+                                <option>MA</option>
+                                <option>MT</option>
+                                <option>MS</option>
+                                <option>MG</option>
+                                <option>PA</option>
+                                <option>PB</option>
+                                <option>PR</option>
+                                <option>PE</option>
+                                <option>PI</option>
+                                <option>RJ</option>
+                                <option>RN</option>
+                                <option>RS</option>
+                                <option>RO</option>
+                                <option>RR</option>
+                                <option>SC</option>
+                                <option>SP</option>
+                                <option>SE</option>
+                                <option>TO</option>
+                            </select>
                         </div>
                         <div>
                             <label htmlFor='zipcode' className='block mb-2 text-sm font-medium text-gray-900'>CEP</label>
-                            <input onChange={e => setZipCode(e.target.value)} value={zipCode} type='text' id='zipcode' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='00000-000' pattern='[(0-9)]{5}-[0-9]{3}' required />
+                            <IMaskInput mask='00000-000' onChange={e => setZipCode(e.target.value)} value={zipCode} type='text' id='zipcode' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='00000-000' pattern='[(0-9)]{5}-[0-9]{3}' required />
                         </div>
                         <div>
                             <label htmlFor='tel' className='block mb-2 text-sm font-medium text-gray-900'>Telefone</label>
-                            <input onChange={e => setTel(e.target.value)} value={tel} type='text' id='tel' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='(00) 00000-0000' pattern='[(0-9)]{2} [0-9]{5}-[0-9]{4}' required />
+                            <IMaskInput mask='(00) 00000-0000' onChange={e => setTel(e.target.value)} value={tel} type='text' id='tel' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='(00) 00000-0000' required />
                         </div>
                         <div>
                             <label htmlFor='linkedin' className='block mb-2 text-sm font-medium text-gray-900'>LinkedIn</label>
-                            <input onChange={e => setLinkedin(e.target.value)} value={linkedin} type='url' id='linkedin' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='linkedin.com/in/joaosilva' required />
+                            <input onChange={e => setLinkedin(e.target.value)} value={linkedin} type='text' id='linkedin' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='linkedin.com/in/joaosilva' />
                         </div>
                         <div>
                             <label htmlFor='email' className='block mb-2 text-sm font-medium text-gray-900'>Email</label>
-                            <input onChange={e => setEmail(e.target.value)} value={email} type='email' id='email' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='joaosilva@dominio.com' required />
+                            <input onChange={e => setEmail(e.target.value)} value={email} type='email' id='email' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='joaosilva@dominio.com' />
                         </div>
                     </div>
                     <div className='mb-6'>
                         <label htmlFor='objective' className='block mb-2 text-sm font-medium text-gray-900'>Objetivos</label>
-                        <textarea id='objective' onChange={e => setDescription(e.target.value)} value={description} className='resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4' placeholder='Objetivos de carreira' />
+                        <textarea id='objective' maxLength='1200' onChange={e => setDescription(e.target.value)} value={description} className='resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4' placeholder='Objetivos de carreira (máx. 1200 caracteres)' required/>
                     </div>
                     {/* FORMATION */}
                     <div className='mb-6'>
@@ -199,9 +231,9 @@ export default function Profile() {
                                 </div>
                             </div>
                             <div className='mb-6'>
-                                    <label htmlFor='skillsXPA' className='block mb-2 text-sm font-medium text-gray-900'>Atribuições</label>
-                                    <textarea id='skillsXPA' onChange={e => setSkillsXPA(e.target.value)} value={skillsXPA} className='resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4' placeholder='Atribuições do cargo' />
-                                </div>
+                                <label htmlFor='skillsXPA' className='block mb-2 text-sm font-medium text-gray-900'>Atribuições</label>
+                                <textarea id='skillsXPA' maxLength='700' onChange={e => setSkillsXPA(e.target.value)} value={skillsXPA} className='resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4' placeholder='Atribuições do cargo (máx. 700 caracteres)' />
+                            </div>
                             <br></br>
                             <br></br>
                             {/* ProXP B */}
@@ -216,7 +248,7 @@ export default function Profile() {
                                 </div>
                                 <div className='items-center'>
                                     <label htmlFor='stillB' className='block mb-2 text-sm font-medium text-gray-900'>Empresa atual?</label>
-                                    <input id='stillB' type='checkbox' value={checkedXPB} className='w-3' onClick={() => { setCheckedXPB(!checkedXPB)}} />
+                                    <input id='stillB' type='checkbox' value={checkedXPB} className='w-3' onClick={() => { setCheckedXPB(!checkedXPB) }} />
                                 </div>
                             </div>
                             <div></div>
@@ -232,7 +264,7 @@ export default function Profile() {
                             </div>
                             <div className='mb-6'>
                                 <label htmlFor='skillsXPB' className='block mb-2 text-sm font-medium text-gray-900'>Atribuições</label>
-                                <textarea id='skillsXPB' onChange={e => setSkillsXPB(e.target.value)} value={skillsXPB} className='resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4' placeholder='Atribuições do cargo' />
+                                <textarea id='skillsXPB' maxLength='700' onChange={e => setSkillsXPB(e.target.value)} value={skillsXPB} className='resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4' placeholder='Atribuições do cargo (máx. 700 caracteres)' />
                             </div>
                         </div>
                     </div>
@@ -273,6 +305,7 @@ export default function Profile() {
                         officeB={officeB}
                         skillsXPA={skillsXPA}
                         skillsXPB={skillsXPB}
+                        image={image}
                     />
                 </div>
             </form>

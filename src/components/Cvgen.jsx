@@ -1,4 +1,5 @@
 import jsPDF from 'jspdf'
+import { useState } from 'react'
 
 export function Cvgen({
     name,
@@ -35,12 +36,13 @@ export function Cvgen({
     companyA,
     companyB,
     skillsXPA,
-    skillsXPB
+    skillsXPB,
+    
 }) {
 
     const genPDF = () => {
         const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4', putOnlyUsedFonts: true })
-
+        
         doc.setDrawColor(60, 60, 30) // red
         doc.setLineWidth(1.5) // line thickness
         doc.line(0, 50, 1000, 50) // (x1, y1, x2, y2) coordinates
@@ -57,10 +59,10 @@ export function Cvgen({
         //full address
         doc.text(8, 30, ((address || district || city || stt) ?
             'Endereço: ' : '') + (address ?
-                address + '.' : '') + (district ?
-                    district + '.' : '') + (city ?
-                        city + '.' : '') + (stt ?
-                            ' - ' + stt + '.' : ''))
+                address + '. ' : '') + (district ?
+                    district + '. ' : '') + (city ?
+                        city : '') + (stt ?
+                            ' - ' + stt : ''))
 
         doc.text(8, 35, (zipCode ? 'CEP: ' + zipCode : '') + (tel ? ' Telefone: ' + tel : ''))
 
@@ -116,23 +118,24 @@ export function Cvgen({
         //XP A
         doc.setFontSize(12)
         doc.text(20, 200, (initialDateXPA && finalDateXPA ?
-            `Data inicio: ${initialDateXPA} | Data fim: ${finalDateXPA}` : (initialDateXPA && checkedXPA ?
+            `Data inicio: ${initialDateXPA} | Data fim: ${finalDateXPA}` : (initialDateXPA && !checkedXPA ?
                 `Data inicio: ${initialDateXPA} | Cargo atual` : (initialDateXPA ?
                     `Data inicio: ${initialDateXPA}` : ''))))
+
         doc.setFontSize(10)
         doc.text(20, 205, (companyA && officeA ?
-            `> ${companyA} - ${officeA}` : (companyA ?
-                '> ' + companyA : (officeA ?
-                    '> ' + officeA : ''))))
+                        `> ${companyA} - ${officeA}` : (companyA ?
+                            '> ' + companyA : (officeA ?
+                                '> ' + officeA : ''))))
 
-        const splitText2 = doc.splitTextToSize(skillsXPA, 180)
-        doc.text(splitText2, 24, 210, { maxWidth: 180, align: "justify" })
+        const splitText2 = doc.splitTextToSize(skillsXPA, 140)
+        doc.text(splitText2, 24, 210, { maxWidth: 150, align: "justify" })
 
 
         //XP B
         doc.setFontSize(12)
         doc.text(20, 248, (initialDateXPB && finalDateXPB ?
-            `Data inicio: ${initialDateXPB} | Data fim: ${finalDateXPB}` : (initialDateXPB && checkedXPB ?
+            `Data inicio: ${initialDateXPB} | Data fim: ${finalDateXPB}` : (initialDateXPB && !checkedXPB ?
                 `Data inicio: ${initialDateXPB} | Cargo atual` : (initialDateXPB ?
                     `Data inicio: ${initialDateXPB}` : ''))))
         doc.setFontSize(10)
@@ -141,17 +144,16 @@ export function Cvgen({
                 '> ' + companyB : (officeB ?
                     '> ' + officeB : ''))))
 
-        const splitText3 = doc.splitTextToSize(skillsXPB, 180)
-        doc.text(splitText3, 24, 258, { maxWidth: 180, align: "justify" })
+        const splitText3 = doc.splitTextToSize(skillsXPB, 140)
+        doc.text(splitText3, 24, 258, { maxWidth: 150, align: 'justify' })
 
         doc.setLineWidth(40) // line thickness
         doc.line(215, 50, 215, 350) // (x1, y1, x2, y2) coordinates
-
 
         doc.save('cv.pdf')
     }
 
     return (
-        <button type='submit' onClick={genPDF} className='text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'>Gerar PDF</button>
+        <button type='submit' onClick={name && lastName && maritalStatus && age && address && district && city && stt && zipCode && tel && description ? genPDF : null} className='text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'>Gerar PDF</button>
     )
 }
