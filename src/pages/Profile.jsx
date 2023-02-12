@@ -50,7 +50,7 @@ export default function Profile() {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <h1 className='font-bold p-4 text-4xl text-gray-900'>Dados pessoais</h1>
+                    <h1 className='font-bold p-4 text-4xl text-gray-900'>Dados Pessoais</h1>
                     <div className='p-5 grid gap-6 mb-6 md:grid-cols-4'>
                         <div>
                             <label htmlFor='name' className='block mb-2 text-sm font-medium text-gray-900'>Nome</label>
@@ -138,7 +138,7 @@ export default function Profile() {
                     <div className='mb-6'>
                         <hr className="mb-6"></hr>
                         <div className='space-y-4'>
-                            <label className='font-bold p-4 text-4xl text-gray-900'>Formação acadêmica</label>
+                            <label className='font-bold p-4 text-4xl text-gray-900'>Formação Acadêmica</label>
                             <br></br>
                             <br></br>
                             {/* Formation A */}
