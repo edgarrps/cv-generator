@@ -1,6 +1,25 @@
 import jsPDF from 'jspdf'
 
-export function Cvgen({ name, lastName, age, maritalStatus, address, district, city, stt, zipCode, tel, email, linkedin, description }) {
+export function Cvgen({
+    name,
+    lastName,
+    age,
+    maritalStatus,
+    address,
+    district,
+    city,
+    stt,
+    zipCode,
+    tel,
+    email,
+    linkedin,
+    description,
+    initialDateGA,
+    finalDateGA,
+    checkedGA,
+    initialDateGB,
+    finalDateGB,
+    checkedGB }) {
 
     const genPDF = () => {
         const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4', putOnlyUsedFonts: true })
@@ -19,12 +38,13 @@ export function Cvgen({ name, lastName, age, maritalStatus, address, district, c
         doc.text(8, 30, `Endereço: ${address}. ${district}. ${city} - ${stt}.`)
         doc.text(8, 35, `CEP: ${zipCode} - Telefone: ${tel}`)
         doc.text(8, 40, `Email: ${email}`)
+        doc.text(120, 65, !checkedGA ? `Data inicio: ${initialDateGA} | Data fim: ${finalDateGA}` : `Data inicio: ${initialDateGA} | Em curso`)
         doc.text(8, 45, linkedin ? `LinkedIn: ${linkedin}` : '')
         doc.setFontSize(18)
         doc.text(12, 62, 'Objetivos')
         doc.setFontSize(10)
         let splitText = doc.splitTextToSize(description, 180)
-        doc.text(splitText, 15, 70, {maxWidth: 180, align: "justify"} )
+        doc.text(splitText, 15, 70, { maxWidth: 180, align: "justify" })
         doc.save('cv.pdf')
     }
 
