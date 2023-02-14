@@ -43,7 +43,7 @@ export function Cvgen({
     const genPDF = () => {
         const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4', putOnlyUsedFonts: true })
         
-        doc.setDrawColor(60, 60, 30) // red
+        doc.setDrawColor(60, 60, 30) // color stroke
         doc.setLineWidth(1.5) // line thickness
         doc.line(0, 50, 1000, 50) // (x1, y1, x2, y2) coordinates
 
